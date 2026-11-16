@@ -1,0 +1,29 @@
+{% from "src/_includes/atoms/status-badge.njk" import statusBadge %}
+
+{% macro instrumentTable(instruments) %}
+<div class="table-instrument">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Status</th>
+        <th scope="col">Instrument</th>
+        <th scope="col">Merk</th>
+        <th scope="col">Eigendom van</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    {% for instrument in instruments %}
+        <tr>
+          <td>{{ statusBadge(instrument.status) }}</td>
+          <td><a href="/details/{{ instrument.key}}/">{{ instrument.instrument or "onbekend" }}</a></td>
+          <td>{{ instrument.brand or "onbekend" }}</td>
+          <td>{{ instrument.property or "onbekend" }}</td>
+          <td><a href="/details/{{ instrument.key}}/">Bekijk</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endmacro %}

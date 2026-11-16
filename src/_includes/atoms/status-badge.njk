@@ -1,0 +1,19 @@
+{% macro statusBadge(status) %}
+{% set statuses = {
+    "Beschikbaar": { "className": "available", "icon": "/images/icons/check-circle.svg" },
+    "Uitgeleend": { "className": "on-loan", "icon": "/images/icons/do_not_disturb_on.svg" },
+    "In Reperatie": { "className": "repair", "icon": "/images/icons/alert-triangle.svg" }
+} 
+%}
+
+{% set current = statuses[status] %}
+
+<div class="status {{current.className if current else 'unknown'}}">
+  {% if current %}
+    <img src= "{{current.icon}}" alt="" />
+    {{status}}
+  {% else %}
+    <em>Niet beschikbaar</em>
+  {% endif %}
+</div>
+{% endmacro %}
